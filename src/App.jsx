@@ -1,18 +1,24 @@
-// src/App.jsx
-
+import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navigator from './components/Navigator';
 import Home from './Pages/Home';
-// import Footer from './components/Footer'; // ★これを削除（またはコメントアウト）
+import About from './Pages/About';
+import Schedule from './Pages/Schedule';
+import Guideline from './Pages/Guideline';
 
 function App() {
   return (
-    <>
+    <BrowserRouter basename="/Branding-Hackathon">
       <Navigator />
       <main>
-        <Home />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/guideline" element={<Guideline />} />
+        </Routes>
       </main>
-      {/* <Footer /> */} {/* ★ここを削除してください */}
-    </>
+    </BrowserRouter>
   );
 }
 
