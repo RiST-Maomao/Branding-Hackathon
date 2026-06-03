@@ -4,6 +4,8 @@ import { ArrowRight, MapPin, Calendar, Users, Megaphone, ChevronDown } from 'luc
 import { Link } from 'react-router-dom';
 
 import bgImage from '/Branding1.png';
+import bgImagea from '/TechTrain_logo_character_jp.png';
+import techTrainLogo from '/TechTrain_logo_character_jp.png';
 
 const heroContainer = {
   hidden: { opacity: 0 },
@@ -35,9 +37,7 @@ const Home = () => {
   const backgroundY = useTransform(scrollY, [0, 600], ['0%', '20%']);
 
   const sponsorLogos = [
-    { id: 1, src: '/assets/sponsor1.png', name: 'Sponsor A' },
-    { id: 2, src: '/assets/sponsor2.png', name: 'Sponsor B' },
-    { id: 3, src: '/assets/sponsor3.png', name: 'Sponsor C' },
+    { id: 1, src: techTrainLogo, name: 'TechTrain' },
   ];
 
   return (
@@ -174,7 +174,7 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.4 }}
               whileHover={{ opacity: 1, scale: 1.08 }}
-              style={{ height: '36px', width: 'auto', filter: 'grayscale(100%)', cursor: 'pointer' }}
+              style={{ height: '360px', width: 'auto', cursor: 'pointer' }}
             />
           ))}
         </div>
