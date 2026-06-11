@@ -11,7 +11,7 @@ const fadeUp = {
 };
 
 const TIMELINE = [
-  { date: '6/11 (木)', time: '17:00〜18:00', label: 'キックオフ', note: '対面。参加困難な場合は要連絡 @AN212 17:00〜' },
+  { date: '6/11 (木)', time: '17:00〜18:00', label: 'キックオフ', note: '対面。参加困難な場合は要連絡 @AN212' },
   { date: '6/13 (土)', time: '12:00', label: '開発開始', note: 'ハックオフ', highlight: true },
   { date: '6/18 (木)', time: '17:00〜18:00', label: '中間発表会', note: 'オンライン開催' },
   { date: '6/20 (土)', time: '12:00', label: 'コードフリーズ', note: '開発終了', highlight: true },
