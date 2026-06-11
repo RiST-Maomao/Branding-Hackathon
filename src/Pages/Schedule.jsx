@@ -11,11 +11,30 @@ const fadeUp = {
 };
 
 const TIMELINE = [
-  { date: '6/11 (木)', time: '17:00〜18:00', label: 'キックオフ', note: '対面。参加困難な場合は要連絡' },
+  {
+    date: '6/11 (木)',
+    time: '16:30〜17:50+',
+    label: 'キックオフ',
+    note: '対面。詳細タイムテーブルは下記参照',
+    targetId: 'kickoff-timetable',
+  },
   { date: '6/13 (土)', time: '12:00', label: '開発開始', note: 'ハックオフ', highlight: true },
   { date: '6/18 (木)', time: '17:00〜18:00', label: '中間発表会', note: 'オンライン開催' },
   { date: '6/20 (土)', time: '12:00', label: 'コードフリーズ', note: '開発終了', highlight: true },
   { date: '6/21 (日)', time: '終日', label: '最終プレゼンテーション', note: '対面・審査会', highlight: true },
+];
+
+const KICKOFF_NOTES = [
+  '予定に合わせて途中参加・途中帰宅できます。',
+  '体調が悪い場合は無理せず、事前に連絡してください。',
+];
+
+const KICKOFF_TIMETABLE = [
+  { time: '16:30〜17:00', label: '受付', note: '到着した人から順次受付' },
+  { time: '17:00〜17:10', label: '説明・チーム分け', note: 'ハッカソンの流れを簡単に共有' },
+  { time: '17:10〜17:20', label: 'アイスブレイク', note: '懇親会としてチーム内で交流' },
+  { time: '17:20〜17:50', label: 'GitHub説明', note: '分からないことはこの時間に確認' },
+  { time: '17:50〜', label: '開発計画・自由解散', note: 'チームごとに方針を決めて解散' },
 ];
 
 const Schedule = () => (
@@ -45,7 +64,7 @@ const Schedule = () => (
         variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
         className="subpage-note"
       >
-        ※ 詳しいタイムテーブルは公式 Discord にて発表します。
+        ※ 6/11の詳細タイムテーブルを追加しました。
       </motion.p>
 
       <div className="timeline">
@@ -58,14 +77,54 @@ const Schedule = () => (
             className={`timeline-item${item.highlight ? ' timeline-item--highlight' : ''}`}
           >
             <div className="timeline-dot" />
-            <div className="timeline-content">
-              <div className="timeline-date">{item.date} <span className="timeline-time">{item.time}</span></div>
-              <div className="timeline-label">{item.label}</div>
-              {item.note && <div className="timeline-note">{item.note}</div>}
-            </div>
+            {item.targetId ? (
+              <a className="timeline-content timeline-content--link" href={`#${item.targetId}`}>
+                <div className="timeline-date">{item.date} <span className="timeline-time">{item.time}</span></div>
+                <div className="timeline-label">{item.label}</div>
+                {item.note && <div className="timeline-note">{item.note}</div>}
+              </a>
+            ) : (
+              <div className="timeline-content">
+                <div className="timeline-date">{item.date} <span className="timeline-time">{item.time}</span></div>
+                <div className="timeline-label">{item.label}</div>
+                {item.note && <div className="timeline-note">{item.note}</div>}
+              </div>
+            )}
           </motion.div>
         ))}
       </div>
+
+      <motion.div
+        id="kickoff-timetable"
+        variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
+        className="subpage-section-gap"
+      >
+        <p className="section-label">6/11 TIMETABLE</p>
+        <div className="schedule-detail-head">
+          <h2 className="schedule-detail-title">キックオフ当日の流れ</h2>
+          <p className="schedule-detail-lead">
+            身の回りで風邪が流行っているので、体調管理に気をつけて参加してください。
+          </p>
+        </div>
+
+        <div className="schedule-note-list">
+          {KICKOFF_NOTES.map((note) => (
+            <p key={note} className="schedule-note-item">{note}</p>
+          ))}
+        </div>
+
+        <div className="day-schedule">
+          {KICKOFF_TIMETABLE.map((item) => (
+            <div key={`${item.time}-${item.label}`} className="day-schedule-row">
+              <div className="day-schedule-time">{item.time}</div>
+              <div className="day-schedule-content">
+                <h3 className="day-schedule-label">{item.label}</h3>
+                <p className="day-schedule-note">{item.note}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
 
       <motion.div
         variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
